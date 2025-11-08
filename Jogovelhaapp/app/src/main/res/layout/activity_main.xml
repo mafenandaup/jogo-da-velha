@@ -2,9 +2,10 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/main"
+    android:id="@+id/backBtn"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/gradient"
     tools:context=".MainActivity">
 
     <TextView
@@ -19,27 +20,30 @@
         app:layout_constraintVertical_bias="0.082" />
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/authorsBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Button"
-        tools:layout_editor_absoluteX="160dp"
-        tools:layout_editor_absoluteY="527dp" />
+        android:backgroundTint="#673AB7"
+        android:text="Autores do App"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.739"
+        app:rippleColor="#A27BE6" />
 
     <Button
         android:id="@+id/button2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Button"
-        tools:layout_editor_absoluteX="148dp"
-        tools:layout_editor_absoluteY="618dp" />
-
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="409dp"
-        android:layout_height="384dp"
-        tools:layout_editor_absoluteX="1dp"
-        tools:layout_editor_absoluteY="78dp">
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
+        android:backgroundTint="#673AB7"
+        android:text="Recomecar"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/authorsBtn"
+        app:layout_constraintVertical_bias="0.166"
+        app:rippleColor="#A27BE6" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
