@@ -1,12 +1,15 @@
 package com.example.jogo_velha_app;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
 import androidx.activity.EdgeToEdge;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
@@ -19,6 +22,9 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_main);
+
+
+
 
         EditText player1Input = findViewById(R.id.player_1_input);
         EditText player2Input = findViewById(R.id.player_2_input);
@@ -38,6 +44,22 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 String player1 = player1Input.getText().toString();
                 String player2 = player2Input.getText().toString();
+
+
+
+                if (TextUtils.isEmpty(player1) || TextUtils.isEmpty(player2) ){
+                    AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
+                    builder.setTitle("Erro ao registrar Jogadores");
+                    builder.setMessage("Campos Vazios não são permitidos. Tente novamente.");
+                    builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            dialog.dismiss();
+                        }
+                    });
+                    builder.show();
+                    return;
+                }
 
                 Intent intent = new Intent(MainActivity.this, GameActivity.class);
                 intent.putExtra("PLAYER_1", player1);
