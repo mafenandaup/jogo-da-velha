@@ -11,40 +11,27 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
-public class MainActivity extends AppCompatActivity {
+public class GameActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_game);
 
-        Button creatorsBtn = findViewById(R.id.authorsBtn);
-        creatorsBtn.setOnClickListener(new View.OnClickListener() {
+        Button backMainBtn = findViewById(R.id.backMainActivity);
+        backMainBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, CreatorsActivity.class );
+                Intent intent = new Intent(GameActivity.this, MainActivity.class );
                 startActivity(intent);
             }
         });
 
-        Button gameActivity = findViewById(R.id.submitBtn);
-        gameActivity.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, GameActivity.class );
-                startActivity(intent);
-            }
-        });
-
-
-
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.backBtn), (v, insets) -> {
+        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
-
-            });
-
-        }
+        });
     }
+}
