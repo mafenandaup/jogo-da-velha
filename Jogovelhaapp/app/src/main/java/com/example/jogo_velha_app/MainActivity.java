@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -19,6 +20,10 @@ public class MainActivity extends AppCompatActivity {
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_main);
 
+        EditText player1Input = findViewById(R.id.player_1_input);
+        EditText player2Input = findViewById(R.id.player_2_input);
+        Button startGameBtn = findViewById(R.id.submitBtn);
+
         Button creatorsBtn = findViewById(R.id.authorsBtn);
         creatorsBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -28,11 +33,15 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        Button gameActivity = findViewById(R.id.submitBtn);
-        gameActivity.setOnClickListener(new View.OnClickListener() {
+        startGameBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, GameActivity.class );
+                String player1 = player1Input.getText().toString();
+                String player2 = player2Input.getText().toString();
+
+                Intent intent = new Intent(MainActivity.this, GameActivity.class);
+                intent.putExtra("PLAYER_1", player1);
+                intent.putExtra("PLAYER_2", player2);
                 startActivity(intent);
             }
         });

@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -13,13 +14,34 @@ import androidx.core.view.WindowInsetsCompat;
 
 public class GameActivity extends AppCompatActivity {
 
+    private boolean isPlayer1Turn = true;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_game);
 
+        TextView playerNames = findViewById(R.id.player_names);
         Button backMainBtn = findViewById(R.id.backMainActivity);
+        Button switchPlayerBtn = findViewById(R.id.switchplayer);
+
+        String player1 = getIntent().getStringExtra("PLAYER_1");
+        String player2 = getIntent().getStringExtra("PLAYER_2");
+
+
+        playerNames.setText("Vez de: " + player1);
+
+        switchPlayerBtn.setOnClickListener(v -> {
+            isPlayer1Turn = !isPlayer1Turn; // inverte o turno
+
+            if (isPlayer1Turn) {
+                playerNames.setText("Vez de: " + player1);
+            } else {
+                playerNames.setText("Vez de: " + player2);
+            }
+        });
+
         backMainBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -27,6 +49,8 @@ public class GameActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+
 
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
