@@ -15,10 +15,38 @@
         android:text="Voltar ao início"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.685" />
+        app:layout_constraintVertical_bias="0.784" />
+
+    <Button
+        android:id="@+id/switchplayer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="teste remover"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/backMainActivity"
+        app:layout_constraintVertical_bias="0.212" />
+
+    <com.example.jogo_velha_app.TabelaJogo
+        android:id="@+id/tabelaJogo"
+        android:layout_width="300dp"
+        android:layout_height="300dp"
+        android:background="#00FFFFFF"
+        app:Ocolor="#0000F2"
+        app:WinLinecolor="#AF0404"
+        app:Xcolor="#8100D3"
+        app:boardColor="#403B4D"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.495"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.459" />
 
     <TextView
         android:id="@+id/player_names"
@@ -33,15 +61,4 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.267" />
 
-    <Button
-        android:id="@+id/switchplayer"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="teste remover"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.512"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/backMainActivity"
-        app:layout_constraintVertical_bias="0.215" />
 </androidx.constraintlayout.widget.ConstraintLayout>
