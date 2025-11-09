@@ -12,9 +12,11 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+
 public class GameActivity extends AppCompatActivity {
 
     private boolean isPlayer1Turn = true;
+    private TabelaJogo tabelaJogo;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,11 +31,13 @@ public class GameActivity extends AppCompatActivity {
         String player1 = getIntent().getStringExtra("PLAYER_1");
         String player2 = getIntent().getStringExtra("PLAYER_2");
 
+        tabelaJogo = findViewById(R.id.tabelaJogo);
 
         playerNames.setText("Vez de: " + player1);
 
         playAgainBtn.setOnClickListener(v -> {
-
+             tabelaJogo.limparTabela();
+             tabelaJogo.invalidate();
         });
 
         backMainBtn.setOnClickListener(new View.OnClickListener() {

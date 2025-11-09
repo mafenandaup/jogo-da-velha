@@ -27,6 +27,14 @@ public class LogicaJogo {
         }
     }
 
+    public void limparTabela(){
+        for (int i=0; i<3; i++) {  // i representa as linhas, j representa as colunas, como mencionado no arquivo da tabela
+            for (int j = 0; j < 3; j++) {
+                tabelaJogo[i][j] = 0;
+            }
+        }
+    }
+
     public int[][] getTabelaJogo() {
         return tabelaJogo;
     }

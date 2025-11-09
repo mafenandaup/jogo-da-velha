@@ -178,6 +178,8 @@ public class TabelaJogo extends View {
 
         canvas.drawOval(left, top, right, bottom, playerO);
     }
-
+    public void limparTabela(){
+        jogo.limparTabela();
+    }
 
 }
