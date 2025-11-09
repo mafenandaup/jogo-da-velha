@@ -15,36 +15,54 @@ public class TabelaJogo extends View {
 
     private final int boardColor;
     private final int Xcolor;
-    private final int Ocolor; // definição dos atributos feitos laaa no xml
+    private final int Ocolor;
     private final int WinLinecolor;
     private int tamanhoCelulas;
     private final LogicaJogo jogo;
     private final Paint telha = new Paint();
 
-
-    public TabelaJogo(Context context, @Nullable AttributeSet attrs, LogicaJogo jogo) {
+    // ✅ Construtor exigido pelo Android (necessário para inflar via XML)
+    public TabelaJogo(Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
-        this.jogo = jogo;
+
+        // Inicialize sua lógica (caso precise)
+        this.jogo = new LogicaJogo(); // ou null, se for setada depois
 
         TypedArray arr = context.getTheme().obtainStyledAttributes(
                 attrs,
-                R.styleable.TabelaJogo, //referenciando o arquivo
+                R.styleable.TabelaJogo,
                 0, 0
         );
 
-        int boardCol = 0;
-        int xCol = 0;
-        int oCol = 0;
-
         try {
-            boardColor = arr.getColor(R.styleable.TabelaJogo_boardColor, 0); //valores dos atributos de estilização
+            boardColor = arr.getColor(R.styleable.TabelaJogo_boardColor, 0);
             Xcolor = arr.getColor(R.styleable.TabelaJogo_Xcolor, 0);
-            Ocolor = arr.getColor(R.styleable.TabelaJogo_Ocolor, 0); // 0 por padrão pois queremos customizar
+            Ocolor = arr.getColor(R.styleable.TabelaJogo_Ocolor, 0);
             WinLinecolor = arr.getColor(R.styleable.TabelaJogo_WinLinecolor, 0);
         } finally {
             arr.recycle();
         }
     }
+
+    // Seus outros construtores opcionais (se usados no código)
+    public TabelaJogo(Context context, int boardColor, int xcolor, int ocolor, int winLinecolor, LogicaJogo jogo) {
+        super(context);
+        this.boardColor = boardColor;
+        Xcolor = xcolor;
+        Ocolor = ocolor;
+        WinLinecolor = winLinecolor;
+        this.jogo = jogo;
+    }
+
+    public TabelaJogo(Context context, AttributeSet attrs, int boardColor, int xcolor, int ocolor, int winLinecolor, LogicaJogo jogo) {
+        super(context, attrs);
+        this.boardColor = boardColor;
+        Xcolor = xcolor;
+        Ocolor = ocolor;
+        WinLinecolor = winLinecolor;
+        this.jogo = jogo;
+    }
+
 
     @Override
     protected void onMeasure(int altura, int largura) {
