@@ -21,12 +21,10 @@ public class TabelaJogo extends View {
     private final LogicaJogo jogo;
     private final Paint telha = new Paint();
 
-    // ✅ Construtor exigido pelo Android (necessário para inflar via XML)
     public TabelaJogo(Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
 
-        // Inicialize sua lógica (caso precise)
-        this.jogo = new LogicaJogo(); // ou null, se for setada depois
+        this.jogo = new LogicaJogo();
 
         TypedArray arr = context.getTheme().obtainStyledAttributes(
                 attrs,
@@ -44,7 +42,6 @@ public class TabelaJogo extends View {
         }
     }
 
-    // Seus outros construtores opcionais (se usados no código)
     public TabelaJogo(Context context, int boardColor, int xcolor, int ocolor, int winLinecolor, LogicaJogo jogo) {
         super(context);
         this.boardColor = boardColor;

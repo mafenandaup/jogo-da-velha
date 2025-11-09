@@ -21,10 +21,10 @@
         app:layout_constraintVertical_bias="0.784" />
 
     <Button
-        android:id="@+id/switchplayer"
+        android:id="@+id/play_again_btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="teste remover"
+        android:text="Jogar novamente"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
@@ -52,7 +52,7 @@
         android:id="@+id/player_names"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Teste com nomes dos players"
+        android:text="Vamos começar a Jogar!"
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/backMainActivity"
         app:layout_constraintEnd_toEndOf="parent"

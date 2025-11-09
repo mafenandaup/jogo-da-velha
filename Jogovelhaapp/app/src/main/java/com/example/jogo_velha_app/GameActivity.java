@@ -24,7 +24,7 @@ public class GameActivity extends AppCompatActivity {
 
         TextView playerNames = findViewById(R.id.player_names);
         Button backMainBtn = findViewById(R.id.backMainActivity);
-        Button switchPlayerBtn = findViewById(R.id.switchplayer);
+        Button playAgainBtn = findViewById(R.id.play_again_btn);
 
         String player1 = getIntent().getStringExtra("PLAYER_1");
         String player2 = getIntent().getStringExtra("PLAYER_2");
@@ -32,14 +32,8 @@ public class GameActivity extends AppCompatActivity {
 
         playerNames.setText("Vez de: " + player1);
 
-        switchPlayerBtn.setOnClickListener(v -> {
-            isPlayer1Turn = !isPlayer1Turn; // inverte o turno
+        playAgainBtn.setOnClickListener(v -> {
 
-            if (isPlayer1Turn) {
-                playerNames.setText("Vez de: " + player1);
-            } else {
-                playerNames.setText("Vez de: " + player2);
-            }
         });
 
         backMainBtn.setOnClickListener(new View.OnClickListener() {
