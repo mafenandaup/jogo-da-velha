@@ -1,10 +1,12 @@
 package com.example.jogo_velha_app;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.util.AttributeSet;
+import android.view.MotionEvent;
 import android.view.View;
 
 import androidx.annotation.Nullable;
@@ -16,17 +18,23 @@ public class TabelaJogo extends View {
     private final int Ocolor; // definição dos atributos feitos laaa no xml
     private final int WinLinecolor;
     private int tamanhoCelulas;
+    private final LogicaJogo jogo;
     private final Paint telha = new Paint();
 
 
-    public TabelaJogo(Context context, @Nullable AttributeSet attrs) {
+    public TabelaJogo(Context context, @Nullable AttributeSet attrs, LogicaJogo jogo) {
         super(context, attrs);
+        this.jogo = jogo;
 
         TypedArray arr = context.getTheme().obtainStyledAttributes(
                 attrs,
                 R.styleable.TabelaJogo, //referenciando o arquivo
                 0, 0
         );
+
+        int boardCol = 0;
+        int xCol = 0;
+        int oCol = 0;
 
         try {
             boardColor = arr.getColor(R.styleable.TabelaJogo_boardColor, 0); //valores dos atributos de estilização
@@ -56,23 +64,67 @@ public class TabelaJogo extends View {
 
         desenharTelha(canvas, telha);
 
-        desenharX(canvas, 2, 2); // as linhas e colunas são numeradas de 0 a 2, então se você quisesse deixar
+        // as linhas e colunas são numeradas de 0 a 2, então, nos métodos desenharX e desenharO, se você quisesse deixar
         // no canto direito, teria que ser linha 0 e coluna 2, no meio, ambas linha e coluna são 1, vice versa..
         // isso ocorre porque cada linha e coluna são definidas como parte de um array - vide o TypedArray acima -
         // cada célula é definida a partir de um valor i (linha) e j (coluna), ambos de 0 a 2.
 
-        desenharO(canvas ,0, 2);
+        desenharMarcadores(canvas);
+    }
+
+    @SuppressLint("ClickableViewAccessibility")
+    @Override
+    public boolean onTouchEvent(MotionEvent event){
+        if (jogo == null) return false;
+        float coordX = event.getX(); // armazenam as coordenadas de ONDE O usuário clicou na tabela
+        float coordY = event.getY();
+
+        int action = event.getAction();
+
+        if (action == MotionEvent.ACTION_DOWN){
+            int linha = (int) Math.floor(coordY / tamanhoCelulas);
+            int coluna = (int) Math.floor(coordX / tamanhoCelulas);
+
+            // garantir dentro dos limites 0..2
+            if (linha < 0) linha = 0;
+            if (linha > 2) linha = 2;
+            if (coluna < 0) coluna = 0;
+            if (coluna > 2) coluna = 2;
+
+
+            if (jogo.atualizarTabela(linha, coluna)){
+                // somente quando houve alteração, redesenha a view
+                invalidate();
+            }
+
+            return true;
+        }
+        return false;
     }
 
     private void desenharTelha(Canvas canvas, Paint telha){
-        for (int coluna = 1; coluna<3; coluna++){ //começa com uma linha (horizontal) desenhada, quando chegar na segunda já para de desenhar pois aí terão sido feitas 3 células
-       canvas.drawLine(tamanhoCelulas * coluna, 0, tamanhoCelulas * coluna, getHeight(), telha);
-
-    }
-        for (int linha = 1; linha<3; linha++){ // mesma coisa pra essa aqui de baixo (vertical)
+        for (int coluna = 1; coluna < 3; coluna++){ //começa com uma linha (horizontal) desenhada, quando chegar na segunda já para de desenhar pois aí terão sido feitas 3 células
+            canvas.drawLine(tamanhoCelulas * coluna, 0, tamanhoCelulas * coluna, getHeight(), telha);
+        }
+        for (int linha = 1; linha < 3; linha++){ // mesma coisa pra essa aqui de baixo (vertical)
             canvas.drawLine(0, tamanhoCelulas * linha, getWidth(), tamanhoCelulas * linha, telha);
         }
+    }
 
+
+    private void desenharMarcadores(Canvas canvas){
+        if (jogo == null) return;
+        int[][] tabela = jogo.getTabelaJogo();
+        for (int i = 0; i < 3; i++){  // i representa as linhas, j representa as colunas, como mencionado no arquivo da tabela
+            for (int j = 0; j < 3; j++){
+                int valor = tabela[i][j];
+                if (valor == 1) {
+                    desenharX(canvas, i, j);
+                } else if (valor == 2) {
+                    desenharO(canvas, i, j);
+                }
+            }
+        }
     }
 
     private void desenharX(Canvas canvas, int linha, int coluna){
@@ -105,11 +157,11 @@ public class TabelaJogo extends View {
 
         float padding = tamanhoCelulas * 0.2f;
         float left = coluna * tamanhoCelulas + padding;
-        float right = linha * tamanhoCelulas + padding;
-        float top = (coluna + 1) * tamanhoCelulas - padding;
+        float top = linha * tamanhoCelulas + padding;
+        float right = (coluna + 1) * tamanhoCelulas - padding;
         float bottom = (linha + 1) * tamanhoCelulas - padding;
 
-        canvas.drawOval(left, right, top, bottom, playerO);
+        canvas.drawOval(left, top, right, bottom, playerO);
     }
 
 
