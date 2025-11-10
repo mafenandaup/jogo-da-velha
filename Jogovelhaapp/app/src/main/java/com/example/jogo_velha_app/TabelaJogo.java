@@ -8,6 +8,8 @@ import android.graphics.Paint;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.View;
+import android.widget.Button;
+import android.widget.TextView;
 
 import androidx.annotation.Nullable;
 
@@ -20,6 +22,8 @@ public class TabelaJogo extends View {
     private int tamanhoCelulas;
     private final LogicaJogo jogo;
     private final Paint telha = new Paint();
+
+    private String nomes[] = {"Plater 1", "Player 2"}; // valores padrão
 
     public TabelaJogo(Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
@@ -180,6 +184,14 @@ public class TabelaJogo extends View {
     }
     public void limparTabela(){
         jogo.limparTabela();
+    }
+
+    public void setUpGame(Button play_again, Button home, TextView vez_jogador, String player1, String player2){
+jogo.setPlay_again(play_again);
+jogo.setHome(home);
+jogo.setVez_jogador(vez_jogador);
+jogo.setPlayer1(player1);
+jogo.setPlayer2(player2);
     }
 
 }

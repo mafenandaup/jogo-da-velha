@@ -24,16 +24,20 @@ public class GameActivity extends AppCompatActivity {
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_game);
 
-        TextView playerNames = findViewById(R.id.player_names);
+        TextView playerTurn = findViewById(R.id.player_names);
+
         Button backMainBtn = findViewById(R.id.backMainActivity);
         Button playAgainBtn = findViewById(R.id.play_again_btn);
 
         String player1 = getIntent().getStringExtra("PLAYER_1");
         String player2 = getIntent().getStringExtra("PLAYER_2");
 
+
         tabelaJogo = findViewById(R.id.tabelaJogo);
 
-        playerNames.setText("Vez de: " + player1);
+        tabelaJogo.setUpGame(playAgainBtn, backMainBtn, playerTurn, player1,player2);
+
+        playerTurn.setText("É a vez de " + player1);
 
         playAgainBtn.setOnClickListener(v -> {
              tabelaJogo.limparTabela();
