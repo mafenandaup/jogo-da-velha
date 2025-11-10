@@ -21,7 +21,9 @@ Abra seu terminal ou prompt de comando e execute:
 ```bash
 git clone https://github.com/mafenandaup/jogo-da-velha.git
 cd jogo-da-velha
+cd jogovelhaapp
 ```
+* IMPORTANTE: tem que ser no folder jogovelhaapp, porque é aí que está o app executável
 
 ### 2. Abrir no Android Studio
 
