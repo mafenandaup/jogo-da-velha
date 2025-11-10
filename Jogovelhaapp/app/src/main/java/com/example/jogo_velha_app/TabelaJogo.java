@@ -194,4 +194,8 @@ jogo.setPlayer1(player1);
 jogo.setPlayer2(player2);
     }
 
+    public void checkGanhador(){
+        jogo.checkGanhador();
+    }
+
 }

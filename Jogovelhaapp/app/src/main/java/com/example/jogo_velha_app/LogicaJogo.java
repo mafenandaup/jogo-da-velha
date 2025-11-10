@@ -53,9 +53,42 @@ public class LogicaJogo {
         }
     }
 
-    public boolean checkGanhador(){
+    public int checkGanhador() {
+        // verificando as linhas
+        for (int i = 0; i < 3; i++) {
+            if (tabelaJogo[i][0] != 0 &&
+                    tabelaJogo[i][0] == tabelaJogo[i][1] &&
+                    tabelaJogo[i][1] == tabelaJogo[i][2]) {
+                return tabelaJogo[i][0]; // vai retornar o número 1 ou 2, que indica os n°s das marcações
+            }
+        }
 
+        // aqui colunas (verifica cada posição, que nem o outro)
+        for (int j = 0; j < 3; j++) {
+            if (tabelaJogo[0][j] != 0 &&
+                    tabelaJogo[0][j] == tabelaJogo[1][j] &&
+                    tabelaJogo[1][j] == tabelaJogo[2][j]) {
+                return tabelaJogo[0][j]; // aqui mesma coisa, player 1 ou player 2
+            }
+        }
+
+        // diagonais
+        if (tabelaJogo[0][0] != 0 &&
+                tabelaJogo[0][0] == tabelaJogo[1][1] &&
+                tabelaJogo[1][1] == tabelaJogo[2][2]) {
+            return tabelaJogo[0][0];
+        }
+
+        if (tabelaJogo[0][2] != 0 &&
+                tabelaJogo[0][2] == tabelaJogo[1][1] &&
+                tabelaJogo[1][1] == tabelaJogo[2][0]) {
+            return tabelaJogo[0][2];
+        }
+
+        // Nenhum vencedor
+        return 0; // caso ninguém tenha vencido
     }
+
 
     public int[][] getTabelaJogo() {
         return tabelaJogo;

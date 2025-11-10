@@ -12,6 +12,8 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import java.text.BreakIterator;
+
 
 public class GameActivity extends AppCompatActivity {
 
@@ -42,7 +44,11 @@ public class GameActivity extends AppCompatActivity {
         playAgainBtn.setOnClickListener(v -> {
              tabelaJogo.limparTabela();
              tabelaJogo.invalidate();
+            playerTurn.setText("É a vez de " + player1);
         });
+
+
+
 
         backMainBtn.setOnClickListener(new View.OnClickListener() {
             @Override
