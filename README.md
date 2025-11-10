@@ -38,4 +38,6 @@ cd jogovelhaapp
 2.  Na barra de ferramentas do Android Studio, selecione o dispositivo ou emulador desejado.
 3.  Clique no botão **"Run"** (o ícone de triângulo verde) para construir e instalar a aplicação no dispositivo/emulador.
 
-
+### 4. Validações de teste
+ * Inserir os campos de input vazios (um ou todos)
+ * Tentar clicar em uma célula que não esteja vazia (window alert)
