@@ -14,6 +14,8 @@ public class LogicaJogo {
     private TextView vez_jogador;
     private String player1;
 
+    private boolean gameOver;
+
     private String player2;
     private int jogador = 1; // como o espaço livre é 0, o jogador X será representado por 1 e o jogador O será 2
 
@@ -27,7 +29,7 @@ public class LogicaJogo {
     }
 
     public synchronized boolean atualizarTabela(int i, int j) {
-        // valida limites
+        if (gameOver) return false;
         if (i < 0 || i > 2 || j < 0 || j > 2) return false;
 
         if (tabelaJogo[i][j] == 0) {
@@ -89,6 +91,9 @@ public class LogicaJogo {
         return 0; // caso ninguém tenha vencido
     }
 
+    public void setGameOver(boolean over) {
+        this.gameOver = over;
+    }
 
     public int[][] getTabelaJogo() {
         return tabelaJogo;

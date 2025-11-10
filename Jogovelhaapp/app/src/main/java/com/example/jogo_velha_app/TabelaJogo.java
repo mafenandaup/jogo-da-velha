@@ -112,8 +112,13 @@ public class TabelaJogo extends View {
 
 
             if (jogo.atualizarTabela(linha, coluna)){
-                // somente quando houve alteração, redesenha a view
                 invalidate();
+                int vencedor = jogo.checkGanhador();
+                if (vencedor != 0) {
+                    jogo.setGameOver(true);
+                    String nomeVencedor = (vencedor == 1) ? jogo.getPlayer1("") : jogo.getPlayer2("");
+                    jogo.getVez_jogador().setText(nomeVencedor + " venceu!");
+                }
             }
 
             return true;
