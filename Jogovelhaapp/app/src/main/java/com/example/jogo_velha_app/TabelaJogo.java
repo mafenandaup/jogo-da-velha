@@ -74,7 +74,7 @@ public class TabelaJogo extends View {
     }
 
     @Override
-    protected void onDraw(Canvas canvas){
+    protected void onDraw(Canvas canvas) {
         Paint telha = new Paint();
         telha.setStyle(Paint.Style.STROKE); // estilização da tabela pra quando ela for inserida na view
         telha.setStrokeWidth(10); //sem incluir diretamente os valores do xml porque, novamente, são customizáveis
@@ -93,14 +93,14 @@ public class TabelaJogo extends View {
 
     @SuppressLint("ClickableViewAccessibility")
     @Override
-    public boolean onTouchEvent(MotionEvent event){
+    public boolean onTouchEvent(MotionEvent event) {
         if (jogo == null) return false;
         float coordX = event.getX(); // armazenam as coordenadas de ONDE O usuário clicou na tabela
         float coordY = event.getY();
 
         int action = event.getAction();
 
-        if (action == MotionEvent.ACTION_DOWN){
+        if (action == MotionEvent.ACTION_DOWN) {
             int linha = (int) Math.floor(coordY / tamanhoCelulas);
             int coluna = (int) Math.floor(coordX / tamanhoCelulas);
 
@@ -111,7 +111,7 @@ public class TabelaJogo extends View {
             if (coluna > 2) coluna = 2;
 
 
-            if (jogo.atualizarTabela(linha, coluna)){
+            if (jogo.atualizarTabela(linha, coluna)) {
                 invalidate();
                 checkVencedor();
             }
@@ -121,21 +121,21 @@ public class TabelaJogo extends View {
         return false;
     }
 
-    private void desenharTelha(Canvas canvas, Paint telha){
-        for (int coluna = 1; coluna < 3; coluna++){ //começa com uma linha (horizontal) desenhada, quando chegar na segunda já para de desenhar pois aí terão sido feitas 3 células
+    private void desenharTelha(Canvas canvas, Paint telha) {
+        for (int coluna = 1; coluna < 3; coluna++) { //começa com uma linha (horizontal) desenhada, quando chegar na segunda já para de desenhar pois aí terão sido feitas 3 células
             canvas.drawLine(tamanhoCelulas * coluna, 0, tamanhoCelulas * coluna, getHeight(), telha);
         }
-        for (int linha = 1; linha < 3; linha++){ // mesma coisa pra essa aqui de baixo (vertical)
+        for (int linha = 1; linha < 3; linha++) { // mesma coisa pra essa aqui de baixo (vertical)
             canvas.drawLine(0, tamanhoCelulas * linha, getWidth(), tamanhoCelulas * linha, telha);
         }
     }
 
 
-    private void desenharMarcadores(Canvas canvas){
+    private void desenharMarcadores(Canvas canvas) {
         if (jogo == null) return;
         int[][] tabela = jogo.getTabelaJogo();
-        for (int i = 0; i < 3; i++){  // i representa as linhas, j representa as colunas, como mencionado no arquivo da tabela
-            for (int j = 0; j < 3; j++){
+        for (int i = 0; i < 3; i++) {  // i representa as linhas, j representa as colunas, como mencionado no arquivo da tabela
+            for (int j = 0; j < 3; j++) {
                 int valor = tabela[i][j];
                 if (valor == 1) {
                     desenharX(canvas, i, j);
@@ -146,14 +146,14 @@ public class TabelaJogo extends View {
         }
     }
 
-    private void desenharX(Canvas canvas, int linha, int coluna){
+    private void desenharX(Canvas canvas, int linha, int coluna) {
         Paint playerX = new Paint();
         playerX.setColor(Xcolor);
         playerX.setStrokeWidth(14);
 
         float padding = tamanhoCelulas * 0.2f;
 
-        float startXLeft = (coluna+1)*tamanhoCelulas - padding;
+        float startXLeft = (coluna + 1) * tamanhoCelulas - padding;
         float startYLeft = linha * tamanhoCelulas + padding;
         float endXLeft = coluna * tamanhoCelulas + padding; // estabelecendo as coordenadas em variáveis (mais facil de editar dps)
         float endYLeft = (linha + 1) * tamanhoCelulas - padding;
@@ -163,12 +163,12 @@ public class TabelaJogo extends View {
         float endXRight = (coluna + 1) * tamanhoCelulas - padding;
         float endYRight = (linha + 1) * tamanhoCelulas - padding;
 
-        canvas.drawLine(startXLeft, startYLeft,endXLeft, endYLeft, playerX);
-        canvas.drawLine(startXRight, startYRight, endXRight,endYRight, playerX);
+        canvas.drawLine(startXLeft, startYLeft, endXLeft, endYLeft, playerX);
+        canvas.drawLine(startXRight, startYRight, endXRight, endYRight, playerX);
 
     }
 
-    private void desenharO(Canvas canvas, int linha, int coluna){
+    private void desenharO(Canvas canvas, int linha, int coluna) {
         Paint playerO = new Paint();
         playerO.setStyle(Paint.Style.STROKE);
         playerO.setColor(Ocolor);
@@ -182,16 +182,17 @@ public class TabelaJogo extends View {
 
         canvas.drawOval(left, top, right, bottom, playerO);
     }
-    public void limparTabela(){
+
+    public void limparTabela() {
         jogo.limparTabela();
     }
 
-    public void setUpGame(Button play_again, Button home, TextView vez_jogador, String player1, String player2){
-jogo.setPlay_again(play_again);
-jogo.setHome(home);
-jogo.setVez_jogador(vez_jogador);
-jogo.setPlayer1(player1);
-jogo.setPlayer2(player2);
+    public void setUpGame(Button play_again, Button home, TextView vez_jogador, String player1, String player2) {
+        jogo.setPlay_again(play_again);
+        jogo.setHome(home);
+        jogo.setVez_jogador(vez_jogador);
+        jogo.setPlayer1(player1);
+        jogo.setPlayer2(player2);
     }
 
     public void checkVencedor() {
@@ -203,9 +204,6 @@ jogo.setPlayer2(player2);
             jogo.getVez_jogador().setText(player1 + " ganhou!!!");
         } else if (vencedor == 2) {
             jogo.getVez_jogador().setText(player2 + " ganhou!!!");
-        }else if (vencedor == 0){
-            jogo.getVez_jogador().setText("deu velha....");
         }
     }
-
 }
