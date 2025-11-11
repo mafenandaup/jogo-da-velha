@@ -55,7 +55,7 @@ public class LogicaJogo {
         }
     }
 
-    public int checkGanhador() {
+    public int checkVencedor() {
         // verificando as linhas
         for (int i = 0; i < 3; i++) {
             if (tabelaJogo[i][0] != 0 &&
@@ -70,7 +70,7 @@ public class LogicaJogo {
             if (tabelaJogo[0][j] != 0 &&
                     tabelaJogo[0][j] == tabelaJogo[1][j] &&
                     tabelaJogo[1][j] == tabelaJogo[2][j]) {
-                return tabelaJogo[0][j]; // aqui mesma coisa, player 1 ou player 2
+                return tabelaJogo[0][j];
             }
         }
 
@@ -108,16 +108,18 @@ public class LogicaJogo {
             this.jogador = jogador;
         }
     }
-    public String getPlayer1(String player1) {
-            return player1;
-        }
+    public String getPlayer1() {
+        return this.player1;
+    }
 
     public void setPlayer1(String player1) {
         this.player1 = player1;
     }
 
-    public String getPlayer2(String player2) {
-        return player2;
+
+
+    public String getPlayer2() {
+        return this.player2;
     }
 
     public void setPlayer2(String player2) {

@@ -113,12 +113,7 @@ public class TabelaJogo extends View {
 
             if (jogo.atualizarTabela(linha, coluna)){
                 invalidate();
-                int vencedor = jogo.checkGanhador();
-                if (vencedor != 0) {
-                    jogo.setGameOver(true);
-                    String nomeVencedor = (vencedor == 1) ? jogo.getPlayer1("") : jogo.getPlayer2("");
-                    jogo.getVez_jogador().setText(nomeVencedor + " venceu!");
-                }
+                checkVencedor();
             }
 
             return true;
@@ -199,8 +194,18 @@ jogo.setPlayer1(player1);
 jogo.setPlayer2(player2);
     }
 
-    public void checkGanhador(){
-        jogo.checkGanhador();
+    public void checkVencedor() {
+        int vencedor = jogo.checkVencedor(); // retorna 1, 2 ou 0
+        String player1 = jogo.getPlayer1();
+        String player2 = jogo.getPlayer2();
+
+        if (vencedor == 1) {
+            jogo.getVez_jogador().setText(player1 + " ganhou!!!");
+        } else if (vencedor == 2) {
+            jogo.getVez_jogador().setText(player2 + " ganhou!!!");
+        }else if (vencedor == 0){
+            jogo.getVez_jogador().setText("deu velha....");
+        }
     }
 
 }
