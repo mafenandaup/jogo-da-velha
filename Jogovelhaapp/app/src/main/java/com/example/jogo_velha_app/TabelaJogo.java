@@ -118,6 +118,7 @@ public class TabelaJogo extends View {
 
             return true;
         }
+        jogo.getVez_jogador().setText("Deu velha..");
         return false;
     }
 
