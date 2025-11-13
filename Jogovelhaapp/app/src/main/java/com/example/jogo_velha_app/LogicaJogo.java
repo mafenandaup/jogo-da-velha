@@ -61,6 +61,7 @@ public class LogicaJogo {
             if (tabelaJogo[i][0] != 0 &&
                     tabelaJogo[i][0] == tabelaJogo[i][1] &&
                     tabelaJogo[i][1] == tabelaJogo[i][2]) {
+                setGameOver(true);
                 return tabelaJogo[i][0]; // vai retornar o número 1 ou 2, que indica os n°s das marcações
             }
         }
@@ -70,6 +71,7 @@ public class LogicaJogo {
             if (tabelaJogo[0][j] != 0 &&
                     tabelaJogo[0][j] == tabelaJogo[1][j] &&
                     tabelaJogo[1][j] == tabelaJogo[2][j]) {
+                setGameOver(true);
                 return tabelaJogo[0][j];
             }
         }
@@ -78,12 +80,14 @@ public class LogicaJogo {
         if (tabelaJogo[0][0] != 0 &&
                 tabelaJogo[0][0] == tabelaJogo[1][1] &&
                 tabelaJogo[1][1] == tabelaJogo[2][2]) {
+            setGameOver(true);
             return tabelaJogo[0][0];
         }
 
         if (tabelaJogo[0][2] != 0 &&
                 tabelaJogo[0][2] == tabelaJogo[1][1] &&
                 tabelaJogo[1][1] == tabelaJogo[2][0]) {
+            setGameOver(true);
             return tabelaJogo[0][2];
         }
 
@@ -99,6 +103,7 @@ public class LogicaJogo {
         }
 
         if (cheio) {
+            setGameOver(true);
             return -1;
         }
 

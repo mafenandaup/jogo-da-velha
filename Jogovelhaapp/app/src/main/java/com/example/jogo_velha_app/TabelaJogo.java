@@ -185,6 +185,7 @@ public class TabelaJogo extends View {
 
     public void limparTabela() {
         jogo.limparTabela();
+        jogo.setGameOver(false);
     }
 
     public void setUpGame(Button play_again, Button home, TextView vez_jogador, String player1, String player2) {
@@ -202,12 +203,11 @@ public class TabelaJogo extends View {
 
         if (vencedor == 1) {
             jogo.getVez_jogador().setText(player1 + " ganhou!!!");
-            jogo.setGameOver(true);
         } else if (vencedor == 2) {
             jogo.getVez_jogador().setText(player2 + " ganhou!!!");
-            jogo.setGameOver(true);
         } else if (vencedor == -1) {
             jogo.getVez_jogador().setText("deu velha.. tente novamente.");
         }
     }
+
 }
