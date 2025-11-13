@@ -202,8 +202,12 @@ public class TabelaJogo extends View {
 
         if (vencedor == 1) {
             jogo.getVez_jogador().setText(player1 + " ganhou!!!");
+            jogo.setGameOver(true);
         } else if (vencedor == 2) {
             jogo.getVez_jogador().setText(player2 + " ganhou!!!");
+            jogo.setGameOver(true);
+        } else if (vencedor == -1) {
+            jogo.getVez_jogador().setText("deu velha.. tente novamente.");
         }
     }
 }
