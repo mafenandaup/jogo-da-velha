@@ -30,7 +30,7 @@ public class LogicaJogo {
 
     public synchronized boolean atualizarTabela(int i, int j) {
         if (gameOver) return false;
-        if (i < 0 || i > 2 || j < 0 || j > 2) return false;
+        if (i < 0 || i > 2 || j < 0 || j > 2) return false; // estabelece os limites necessários
 
         if (tabelaJogo[i][j] == 0) {
             tabelaJogo[i][j] = jogador; // como 0 é espaço livre, X é representado por 1, e O, por 2
@@ -88,7 +88,22 @@ public class LogicaJogo {
         }
 
         // Nenhum vencedor
-        return 0; // caso ninguém tenha vencido
+        boolean cheio = true;
+        for (int i = 0; i < 3; i++) {
+            for (int j = 0; j < 3; j++) {
+                if (tabelaJogo[i][j] == 0) { // verifica se a tabela está cheia
+                    cheio = false;
+                    break;
+                }
+            }
+        }
+
+        if (cheio) {
+            return -1;
+        }
+
+
+        return 0;// caso ninguém tenha vencido
     }
 
     public void setGameOver(boolean over) {
